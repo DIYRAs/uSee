@@ -27,9 +27,10 @@ const textVariants = {
 }
 
 
-const Button = ({ text }) => {
+const Button = ({ text, event }) => {
     return (
         <motion.button
+            onClick={() => { event() }}
             whileHover="hover"
             whileTap={{ y: ['2px', '0'] }}
             initial="initial"

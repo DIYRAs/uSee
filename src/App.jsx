@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import AnimatedGridBackground from './UI/animations/gridBackgroud'
 import Button from './components/button'
 import { motion } from 'framer-motion'
 
 const App = () => {
+  const soonRef = useRef(null)
+  const open = () => {
+    soonRef.current?.classList.remove('hidden')
+    soonRef.current?.classList.add('flex')
+    window.location.href = '#comingSoon'
+  }
+
   return (
     <>
       <div className='z-0 flex flex-col items-center w-full h-screen text-white bg-zinc-900'>
@@ -17,16 +24,18 @@ const App = () => {
             Praesentium numquam tempora est!
           </p>
 
-          <Button text={'START'} />
+          <Button text={'START'} event={open} />
         </div>
 
       </div>
       <motion.div
+        id='comingSoon'
+        ref={soonRef}
         animate={{ filter: 'hue-rotate(360deg)' }}
         transition={{
           repeat: Infinity
         }}
-        className='flex flex-col items-center w-full h-screen pt-40 text-white bg-red-400'>
+        className='flex-col items-center hidden w-full h-screen pt-40 text-white bg-red-400'>
         <p className='font-serif text-4xl font-bold'>COMING SOON...</p>
       </motion.div>
     </>
